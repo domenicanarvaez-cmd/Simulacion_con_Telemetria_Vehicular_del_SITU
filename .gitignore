@@ -1,0 +1,12 @@
+# Dependencias (se regeneran con npm install)
+node_modules/
+
+# Caché de Vite y compilados
+.vite/
+client/dist/
+dist/
+
+# Registros y archivos locales
+*.log
+.env
+.DS_Store
