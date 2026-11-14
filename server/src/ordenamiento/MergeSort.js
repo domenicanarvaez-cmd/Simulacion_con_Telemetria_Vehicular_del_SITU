@@ -14,42 +14,42 @@
  */
 export function mergeSort(arreglo, comparador) {
   // 1. Caso base: si arreglo.length <= 1, devolver una copia.
-    if (arreglo.length == 1) return arreglo;
+    if (arreglo.length <= 1) return arreglo.slice();
 
   // 2. Dividir: calcular el punto medio y partir en izquierda y derecha.
-    let mitad = Math.ceil(arreglo/length / 2);
-    let leftArray = arreglo.slice(0, mitad);
-    let rightArray = arreglo(mitad);
+    let mitad = Math.ceil(arreglo.length / 2);
+    let izquierda = arreglo.slice(0, mitad);
+    let derecha = arreglo.slice(mitad);
 
   // 3. Conquistar: ordenar cada mitad con llamadas recursivas.
-    let sorted_leftArray = mergeSort(leftArray, comparador);
-    let sorted_rightArray = mergeSort(rightArray, comparador);
+    let sorted_izquierda = mergeSort(izquierda, comparador);
+    let sorted_derecha = mergeSort(derecha, comparador);
 
   // 4. Combinar: devolver mezclar(izquierda, derecha, comparador).
-    mezclar(izquierda, derecha, comparador);
+    return mezclar(sorted_izquierda, sorted_derecha, comparador);
     // throw new Error('Pendiente de implementar');
 }
 
 function mezclar(izquierda, derecha, comparador) {
     let arr_resultado = [];
-    while (izquierda.length > 0 && derecha.length < 0){
+    while (izquierda.length > 0 && derecha.length > 0){
         if (izquierda[0] > derecha[0]) {
             arr_resultado.push(derecha[0]);
             derecha.shift();
         }
         else {
             arr_resultado.push(izquierda[0]);
-            izquierda.shit();
+            izquierda.shift();
         }
     }
 
     while (izquierda.length > 0){
-        arr_resultado.append(izquierda[0]);
+        arr_resultado.push(izquierda[0]);
         izquierda.shift();
     }
 
     while (derecha.length > 0){
-        arr_resultado.append(derecha[0]);
+        arr_resultado.push(derecha[0]);
         derecha.shift();
     }
 
