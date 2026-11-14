@@ -62,3 +62,13 @@ Utilicé ChatGPT como apoyo para organizar el desarrollo de mi actividad, resolv
 ### Responsabilidad
 
 Soy responsable del trabajo realizado en mi actividad. Revisé el funcionamiento del benchmark, ejecuté las mediciones y comprobé que las pruebas del proyecto finalizaran correctamente. También revisé los resultados para comprender las diferencias entre ambos algoritmos.
+
+---
+
+## AA1-U2 #4 – Comparadores multicriterio y demo
+
+**Herramienta:** Claude (Anthropic)
+
+| Prompt | Para qué lo usé |
+|---|---|
+|Cómo desarrollar comparadores por un criterio y multicriterio utilizando datos de telemetría vehicular, como ruta, velocidad y timestamp|Adapté los comparadores a los campos reales del dataset, realicé pruebas de ordenamiento y mostré los primeros 10 registros antes y después de ordenar|
