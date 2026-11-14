@@ -29,7 +29,7 @@ export class BufferCircular {
     this._lat = new Float64Array(capacidad);
     this._lng = new Float64Array(capacidad);
     this._velocidad = new Float64Array(capacidad);
-    this._ts = new Float64Array(capacidad);
+    this._ts = new Float64Array(capacidad); // El instante en milisegundos, en el que el simulador genero esa posicion
 
     this._cabeza = 0;   // posición de la trama más antigua
     this._cola = 0;     // siguiente posición libre
