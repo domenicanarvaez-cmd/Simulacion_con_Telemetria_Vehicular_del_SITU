@@ -1,15 +1,12 @@
 import { construirRedLoja, lineaDeUnidad} from '../../shared/redLoja.js';
 import { porRutaYTs } from './comparadores.js';
-//mergeSort  // ACTIVAR CUANDO ESTE LISTO
-//quickSort // ACTIVAR CUANDO ESTE LISTO
+import { mergeSort } from '../../server/src/ordenamiento/MergeSort.js';
+import { quickSort } from '../../server/src/ordenamiento/QuickSort.js';
 
-
-const mergeSort = (arr, cmp) => [...arr].sort(cmp); //CAMBIAR
-const quickSort = (arr, cmp) => [...arr].sort(cmp); //CAMBIAR
 
 const nLineas = construirRedLoja().lineas.length;
 const base = Date.now();
-const datos = Array.from({ length: 200 }, (_, i) => ({ 
+const datos = Array.from({ length: 20 }, (_, i) => ({ 
     unidadId: i + 1,
     rutaId: lineaDeUnidad(i + 1, nLineas),
     lat: -3.99 + Math.random() * 0.03,
