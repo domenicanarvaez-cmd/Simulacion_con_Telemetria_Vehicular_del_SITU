@@ -1,6 +1,6 @@
 // UN CRITERIO
 
-export const porVelocidad = (a, b) => { a.velocidad - b.velocidad };
+export const porVelocidad = (a, b) => a.velocidad - b.velocidad;
 
 //MULTICRITERIO: POR RUTA Y SI EMPATAN POR timestamp
 
