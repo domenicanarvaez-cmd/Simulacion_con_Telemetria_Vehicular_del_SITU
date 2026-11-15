@@ -102,7 +102,6 @@ Usé la IA como apoyo para comprender el flujo de trabajo colaborativo en GitHub
 ## Responsabilidad
 
 Soy responsable del contenido final entregado. Entiendo el funcionamiento del algoritmo QuickSort, su partición, la estrategia de mediana de tres y verifiqué que todas las pruebas unitarias pasan correctamente.
-=======
 
 ---
 
@@ -142,7 +141,6 @@ Soy responsable del contenido final entregado. Entiendo el funcionamiento del al
 **Uso del resultado:** Se utilizó ChatGPT para recibir orientación sobre el proceso de integración de ramas y la resolución de posibles conflictos en GitHub.
 
 **Nota:** El tercer prompt fue reconstruido a partir de la actividad realizada; no corresponde a una transcripción literal del mensaje original.
->>>>>>> origin/main
 
 ---
 
