@@ -143,3 +143,17 @@ Soy responsable del contenido final entregado. Entiendo el funcionamiento del al
 
 **Nota:** El tercer prompt fue reconstruido a partir de la actividad realizada; no corresponde a una transcripción literal del mensaje original.
 >>>>>>> origin/main
+
+---
+
+## AA1-U2 #6 – Integración y revisión (Domenica Narvaez)
+
+**Herramienta:** Claude (Anthropic)
+
+| Prompt | Para qué lo usé | Cómo validé |
+|---|---|---|
+| "Ayúdame a repartir esta tarea en GitHub Projects para 5 integrantes" | Organizar los issues, ramas, fechas y el tablero AA_U2 | Creé los issues #2 a #6 y asigné un responsable a cada uno |
+| "Revisa el repositorio y dime qué falta" | Revisar el código integrado del equipo | Se detectaron 3 problemas (QuickSort sin unir, `porVelocidad` sin `return`, desbordamiento de pila con datos repetidos); pedí las correcciones y verifiqué cada una |
+| "Dime cómo unir las ramas y resolver los conflictos" | Integrar las ramas en `feature/modulo-ordenamiento` | Resolví los conflictos de `QuickSort.js` y `declaracion_IA.md` y comprobé que no quedaran marcas de conflicto |
+
+**Validación final:** en la rama de integración ejecuté `npm test` (59 pruebas aprobadas, 0 fallidas), la demo con MergeSort y QuickSort, y el benchmark con `--expose-gc`. Verifiqué que el módulo no usa `.sort()`.
