@@ -29,3 +29,16 @@ test('ordena registros de telemetría por múltiples criterios', () => {
   quickSort(tramas, (a, b) => (a.velocidad - b.velocidad) || (a.ts - b.ts));
   assert.deepEqual(tramas.map((t) => t.unidadId), [3, 7, 10]);
 });
+
+test('ordena 100 000 registros con muchos valores repetidos sin desbordar la pila', () => {
+  const registros = Array.from({ length: 100_000 }, (_, i) => ({
+    unidadId: i + 1,
+    rutaId: i % 4, // Solo 4 rutas posibles (alta repetición)
+  }));
+
+  quickSort(registros, (a, b) => a.rutaId - b.rutaId);
+
+  for (let i = 1; i < registros.length; i++) {
+    assert.ok(registros[i - 1].rutaId <= registros[i].rutaId);
+  }
+});

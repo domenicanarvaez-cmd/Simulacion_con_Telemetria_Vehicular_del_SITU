@@ -1,18 +1,21 @@
 /**
  * Algoritmo de ordenamiento QuickSort implementado desde cero (sin usar .sort()).
  *
- * Ordena registros estructurados de telemetría según cualquier criterio definido
- * por una función comparadora. Utiliza selección de pivote por mediana de tres
- * para evitar la degradación cuadrática en arreglos ya ordenados o casi ordenados.
+ * Utiliza selección de pivote por mediana de tres y partición en tres vías
+ * (Dutch National Flag: menores, iguales y mayores que el pivote). Esto evita
+ * la degradación cuadrática y el desbordamiento de pila (Stack Overflow) cuando
+ * existen miles de registros con claves repetidas (ej. ordenar 100 000 tramas
+ * por lineaId/rutaId).
  *
  * Complejidad temporal:
  *  - Caso promedio: O(n log n)
+ *  - Arreglos con claves repetidas / iguales: O(n)
  *  - Peor caso: O(n²)
  * Complejidad espacial: O(log n) en promedio por la pila de recursión.
  */
 
 /**
- * Ordena un arreglo in-place utilizando QuickSort y lo devuelve.
+ * Ordena un arreglo in-place utilizando QuickSort de 3 vías y lo devuelve.
  *
  * @template T
  * @param {T[]} arreglo  Arreglo de elementos o registros estructurados a ordenar.
@@ -31,26 +34,53 @@ export function quickSort(arreglo, comparador) {
   }
   if (arreglo.length <= 1) return arreglo;
 
-  quickSortRecursivo(arreglo, 0, arreglo.length - 1, comparador);
+  quickSort3Vias(arreglo, 0, arreglo.length - 1, comparador);
   return arreglo;
 }
 
 /**
- * Ordena recursivamente el subarreglo entre los índices `inicio` y `fin`.
+ * Ordena recursivamente el subarreglo entre `inicio` y `fin` mediante
+ * partición en tres vías (Dutch National Flag).
  */
-function quickSortRecursivo(arreglo, inicio, fin, comparador) {
+function quickSort3Vias(arreglo, inicio, fin, comparador) {
   if (inicio >= fin) return;
 
-  const indicePivote = particionarLomuto(arreglo, inicio, fin, comparador);
-  quickSortRecursivo(arreglo, inicio, indicePivote - 1, comparador);
-  quickSortRecursivo(arreglo, indicePivote + 1, fin, comparador);
+  // Selección de pivote por mediana de tres y colocación en `inicio`
+  elegirPivoteMedianaDeTres(arreglo, inicio, fin, comparador);
+  const pivote = arreglo[inicio];
+
+  // Invariante de Dijkstra (Dutch National Flag):
+  //   arreglo[inicio .. lt - 1] < pivote
+  //   arreglo[lt .. i - 1]      === pivote
+  //   arreglo[i .. gt]          sin examinar
+  //   arreglo[gt + 1 .. fin]    > pivote
+  let lt = inicio;
+  let i = inicio + 1;
+  let gt = fin;
+
+  while (i <= gt) {
+    const cmp = comparador(arreglo[i], pivote);
+    if (cmp < 0) {
+      intercambiar(arreglo, lt, i);
+      lt++;
+      i++;
+    } else if (cmp > 0) {
+      intercambiar(arreglo, i, gt);
+      gt--;
+    } else {
+      i++;
+    }
+  }
+
+  // Los elementos en [lt .. gt] ya son iguales al pivote y no se vuelven a tocar.
+  quickSort3Vias(arreglo, inicio, lt - 1, comparador);
+  quickSort3Vias(arreglo, gt + 1, fin, comparador);
 }
 
 /**
- * Elige el pivote mediante mediana de tres (inicio, centro y fin),
- * ordena esos tres elementos y coloca el pivote en `fin` para Lomuto.
+ * Ordena inicio, centro y fin, y deja la mediana en `inicio` para usarla como pivote.
  */
-function prepararPivoteMedianaDeTres(arreglo, inicio, fin, comparador) {
+function elegirPivoteMedianaDeTres(arreglo, inicio, fin, comparador) {
   const medio = (inicio + fin) >> 1;
 
   if (comparador(arreglo[medio], arreglo[inicio]) < 0) {
@@ -63,25 +93,8 @@ function prepararPivoteMedianaDeTres(arreglo, inicio, fin, comparador) {
     intercambiar(arreglo, medio, fin);
   }
   // Ahora arreglo[inicio] <= arreglo[fin] <= arreglo[medio].
-  // arreglo[fin] contiene la mediana y queda listo como pivote al final.
-}
-
-/**
- * Partición de Lomuto utilizando mediana de tres como pivote.
- */
-function particionarLomuto(arreglo, inicio, fin, comparador) {
-  prepararPivoteMedianaDeTres(arreglo, inicio, fin, comparador);
-  const pivote = arreglo[fin];
-  let i = inicio;
-
-  for (let j = inicio; j < fin; j++) {
-    if (comparador(arreglo[j], pivote) <= 0) {
-      intercambiar(arreglo, i, j);
-      i++;
-    }
-  }
-  intercambiar(arreglo, i, fin);
-  return i;
+  // La mediana está en `fin`; la movemos a `inicio` como pivote.
+  intercambiar(arreglo, inicio, fin);
 }
 
 function intercambiar(arreglo, i, j) {
