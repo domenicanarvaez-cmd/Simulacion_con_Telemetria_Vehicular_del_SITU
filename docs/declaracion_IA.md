@@ -47,6 +47,21 @@ La implementación de `mergeSort` fue escrita por mí. Usé la IA como apoyo par
 ## Responsabilidad
 
 Soy responsable del contenido final entregado. Entiendo el funcionamiento del algoritmo y verifiqué que las pruebas pasan.
+---
+
+## Apoyo de IA en el desarrollo del Benchmark
+
+**Componente:** Benchmark de algoritmos de ordenamiento (`server/src/ordenamiento/benchmark.js`).
+
+**Herramienta utilizada:** ChatGPT (OpenAI).
+
+### Alcance del uso
+
+Utilicé ChatGPT como apoyo para organizar el desarrollo de mi actividad, resolver dudas sobre Git y GitHub y comprender cómo realizar la comparación entre MergeSort y QuickSort. También me ayudó a estructurar el benchmark y entender las mediciones de tiempo y memoria. Después ejecuté el programa, revisé el archivo CSV y comprobé los resultados obtenidos.
+
+### Responsabilidad
+
+Soy responsable del trabajo realizado en mi actividad. Revisé el funcionamiento del benchmark, ejecuté las mediciones y comprobé que las pruebas del proyecto finalizaran correctamente. También revisé los resultados para comprender las diferencias entre ambos algoritmos.
 
 ---
 
