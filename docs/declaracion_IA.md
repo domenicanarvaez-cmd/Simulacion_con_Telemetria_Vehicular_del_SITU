@@ -1,6 +1,5 @@
 # Declaración de uso de IA
 
-<<<<<<< HEAD
 **Proyecto:** Simulación con Telemetría Vehicular del SITU
 **Componente:** Algoritmo de ordenamiento Merge Sort (`server/src/ordenamiento/MergeSort.js`)
 **Herramienta utilizada:** Claude (Anthropic)
@@ -73,7 +72,6 @@ Soy responsable del trabajo realizado en mi actividad. Revisé el funcionamiento
 | Prompt | Para qué lo usé |Cómo validé el código|
 |---|---|---|
 |Cómo desarrollar comparadores por un criterio y multicriterio utilizando datos de telemetría vehicular, como ruta, velocidad y timestamp|Adapté los comparadores a los campos reales del dataset, realicé pruebas de ordenamiento y mostré los primeros 10 registros antes y después de ordenar|Ejecuté `demo.js` con el MergeSort y el QuickSort reales del equipo y revisé en consola que, después de ordenar, las filas quedan agrupadas por `rutaId` y con `ts` ascendente dentro de cada ruta. En la revisión se detectó que `porVelocidad` devolvía `undefined` por tener llaves sin `return`. Lo corregí y lo probé con un arreglo desordenado (30, 10, 20), que ahora sale ordenado como 10, 20, 30.|
-=======
 **Proyecto:** Simulación con Telemetría Vehicular del SITU  
 **Componente:** Algoritmo de ordenamiento QuickSort (`server/src/ordenamiento/QuickSort.js`)  
 **Herramienta utilizada:** Gemini (Google)
@@ -104,4 +102,44 @@ Usé la IA como apoyo para comprender el flujo de trabajo colaborativo en GitHub
 ## Responsabilidad
 
 Soy responsable del contenido final entregado. Entiendo el funcionamiento del algoritmo QuickSort, su partición, la estrategia de mediana de tres y verifiqué que todas las pruebas unitarias pasan correctamente.
->>>>>>> origin/feat/quicksort
+=======
+
+---
+
+## Uso de ChatGPT en la actividad de Benchmark
+
+**Herramienta utilizada:** ChatGPT (OpenAI)
+
+**Componente:** Benchmark de tiempos y memoria
+(`server/src/ordenamiento/benchmark.js`).
+
+### Prompts utilizados
+
+#### 1. Orientación inicial sobre la actividad
+
+**Prompt:**
+
+> hoy tengo que hacer una nueva actividad de mi grupo de trabajo y me asignaron esta al git hub, no se donde estaria el archivo y atambien no seria mejor si lo trabajo directamente en git hub? o no es recomendable?
+
+**Material de contexto:** Se adjuntó una captura del Issue #5 de GitHub con las instrucciones de la actividad.
+
+**Uso del resultado:** Se utilizó ChatGPT para comprender las instrucciones, identificar dónde trabajar dentro del repositorio y decidir cómo organizar el trabajo mediante Git y GitHub.
+
+#### 2. Revisión de ramas y avances del equipo
+
+**Prompt:**
+
+> en branch solo me sale main deful, listo creo que ya hicieron su parte pero no estoy seguro como puedo revisar
+
+**Uso del resultado:** Se utilizó ChatGPT para consultar cómo revisar las ramas del repositorio, comprobar el estado de los Pull Requests y verificar los avances de los compañeros.
+
+#### 3. Fusión de ramas en GitHub (prompt reconstruido)
+
+**Prompt:**
+
+> ¿Cómo puedo fusionar mi rama de trabajo `feat/benchmark-ordenamiento` con la rama `feature/modulo-ordenamiento` en GitHub, evitando conflictos y asegurándome de integrar correctamente los cambios?
+
+**Uso del resultado:** Se utilizó ChatGPT para recibir orientación sobre el proceso de integración de ramas y la resolución de posibles conflictos en GitHub.
+
+**Nota:** El tercer prompt fue reconstruido a partir de la actividad realizada; no corresponde a una transcripción literal del mensaje original.
+>>>>>>> origin/main
