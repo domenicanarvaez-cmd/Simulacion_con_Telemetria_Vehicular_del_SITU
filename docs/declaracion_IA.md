@@ -164,9 +164,10 @@ Soy responsable del contenido final entregado. Entiendo el funcionamiento del al
 
 | Prompt | Para qué lo usé | Cómo validé |
 |---|---|---|
-| Compartí el issue y consulté cómo realizar la búsqueda secuencial | Entender cómo implementar la función y realizar las pruebas solicitadas | Ejecuté node pruebas.js y comprobé los cuatro casos |
+| Compartí el issue y consulté cómo realizar la búsqueda secuencial | Entender cómo implementar la función y realizar las pruebas solicitadas | Ejecuté las pruebas con `npm test` (formato node:test, 6 pruebas en `server/test/busquedaSecuencial.test.js`) y comprobé los cuatro casos |
 | Consulté cómo relacionar la búsqueda secuencial con la sostenibilidad | Tener una idea de cómo explicar el consumo de recursos y buscar referencias | Verifiqué los autores y el DOI de las referencias en IEEE Xplore y leí los resúmenes |
 | Pregunté cómo subir mis cambios a GitHub | Recordar los pasos para trabajar con ramas, commits y Pull Requests | Ejecuté los comandos en mi terminal y revisé el PR en GitHub |
+| Consulté cómo corregir las observaciones de la revisión (PR #68) sobre mi parte | Mover el código a `server/src/busqueda/`, agregar comentarios JSDoc y pasar las pruebas al formato node:test | Verifiqué que `busquedaSecuencial.js` quedó en la carpeta correcta, leí los comentarios y ejecuté `npm test`: pasan las 65 pruebas, incluidas las 6 de búsqueda secuencial |
 
 **Responsabilidad:** Revisé, adapté y comprobé el trabajo realizado. Soy responsable del código y del contenido que entrego.
 
