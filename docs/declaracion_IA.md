@@ -204,3 +204,53 @@ Usé la IA para entender el enunciado y el proyecto, planificar la tarea y escri
 ### Responsabilidad
 
 Soy responsable de mi parte entregada. Entiendo cómo se ordenan los registros, cómo se calcula el offset en bytes (`Buffer.byteLength`, no la cantidad de caracteres) y cómo el índice permite leer un solo registro con `readSync`.
+
+
+---
+
+## AA2-U2 – Búsqueda binaria (Galo Benítez)
+
+**Herramienta utilizada:** ChatGPT (OpenAI)
+
+**Componente:** Búsqueda binaria
+(`server/src/busqueda/busquedaBinaria.js`).
+
+### Alcance del uso
+
+Utilicé ChatGPT como apoyo para comprender los requisitos de la actividad, revisar la estructura del repositorio, implementar la búsqueda binaria iterativa, preparar las pruebas unitarias y comparar las complejidades teóricas y experimentales de la búsqueda secuencial y binaria. Revisé el código y ejecuté las pruebas para comprobar su funcionamiento.
+
+### Prompts utilizados
+
+#### 1. Orientación inicial sobre la actividad
+
+**Prompt:**
+
+> hola que tal jaja oye el dia de hoy tengo que hacer esta nueva actividad que me asignaron
+
+**Material de contexto:** Se adjuntó una captura del Issue #8 con las instrucciones de la actividad.
+
+**Uso del resultado:** Comprender los requisitos y organizar los pasos necesarios para realizar la actividad.
+
+#### 2. Organización del trabajo con Git Bash
+
+**Prompt:**
+
+> o podemos hacerlo tambien desde el git bash?
+
+**Uso del resultado:** Recibir orientación sobre cómo utilizar Git Bash para revisar el repositorio, gestionar ramas y ejecutar pruebas.
+
+#### 3. Uso de Visual Studio Code
+
+**Prompt:**
+
+> no seria mejor si el codigo lo hago con mi vusial studio code o solo se hace en el bash?
+
+**Uso del resultado:** Organizar el trabajo utilizando Visual Studio Code para escribir el código y Git Bash para ejecutar comandos de Git y pruebas.
+
+### Validación
+
+Se ejecutaron las pruebas individuales de búsqueda binaria y las pruebas completas del servidor. Se obtuvieron 7 pruebas individuales aprobadas y 77 pruebas del servidor aprobadas. También se realizó una comparación de las comparaciones efectuadas por ambos algoritmos con 500.000 registros ordenados mediante MergeSort.
+
+### Responsabilidad
+
+Soy responsable del trabajo entregado. Revisé la implementación, comprendí el funcionamiento de la búsqueda binaria y comprobé los resultados mediante las pruebas realizadas.
