@@ -15,7 +15,7 @@ export function leerJSONL(rutaArchivo) {
     .filter((linea) => linea.length > 0) // ignora líneas vacías
     .map((linea, i) => {
       try {
-        return JSON.parse(linea);
+        return JSON.parse(linea); // convierta una linea en objeto
       } catch {
         throw new Error(`Línea ${i + 1} no es un JSON válido: ${linea}`);
       }
@@ -51,7 +51,7 @@ export function busquedaSecuencial(arreglo, clave, campo) {
       return { indice: i, comparaciones };
     }
   }
-  
+
   // Recorrió todo el arreglo sin encontrarlo: el peor caso, n comparaciones
   return { indice: -1, comparaciones };
 }
@@ -70,7 +70,6 @@ export function buscarEnArchivo(rutaArchivo, clave, campo) {
   const { indice, comparaciones } = busquedaSecuencial(datos, clave, campo);
 
   return {
-    indice,
     comparaciones,
     registro: indice !== -1 ? datos[indice] : null,
   };
