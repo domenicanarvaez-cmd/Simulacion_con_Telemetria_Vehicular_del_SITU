@@ -83,3 +83,47 @@ Al aplicar la propuesta en L1, sus 59 unidades se reubicaron y la ruta nueva mid
 - Probar en Node.js 20 (RNF-08).
 - Reemplazar los consumos provisionales con los datos del Consorcio (RNF-10).
 - Peso combinado de tiempo y emisiones en Dijkstra.
+
+---
+
+## AA2-U2. Búsqueda secuencial vs. búsqueda binaria
+
+**Responsable:** Galo Benítez
+**Herramienta:** Node.js
+**Algoritmo de ordenamiento:** MergeSort del AA1
+**Cantidad de registros:** 500.000
+**Semilla:** 42
+
+### Metodología
+
+Se generaron 500.000 registros de telemetría inicialmente desordenados mediante `generarRegistrosDesordenados()`. Posteriormente, se ordenaron utilizando `mergeSort()` del AA1, con `unidadId` como criterio de ordenamiento.
+
+Se ejecutaron ambos algoritmos de búsqueda utilizando las mismas claves y se contabilizó el número de comparaciones realizadas.
+
+### Resultados experimentales
+
+| Caso de búsqueda | Clave | Secuencial | Binaria |
+|---|---:|---:|---:|
+| Primer elemento | 1 | 1 | 18 |
+| Elemento central | 250.000 | 250.000 | 1 |
+| Último elemento | 500.000 | 500.000 | 19 |
+| Elemento inexistente | 500.001 | 500.000 | 19 |
+
+### Comparación de complejidad teórica
+
+Para 500.000 registros, los máximos teóricos de comparaciones son:
+
+| Algoritmo | Complejidad temporal | Comparaciones máximas |
+|---|---|---:|
+| Búsqueda secuencial | O(n) | 500.000 |
+| Búsqueda binaria | O(log n) | 19 |
+
+### Análisis de resultados
+
+Los resultados muestran que la búsqueda secuencial es eficiente cuando el elemento se encuentra al principio del arreglo, realizando solamente una comparación. Sin embargo, cuando el elemento se encuentra en el centro, al final o no existe, puede necesitar hasta 500.000 comparaciones.
+
+Por otro lado, la búsqueda binaria necesitó entre 1 y 19 comparaciones en los casos evaluados. Esto demuestra su ventaja al trabajar con arreglos previamente ordenados, ya que descarta la mitad del intervalo de búsqueda en cada iteración.
+
+Los resultados experimentales concuerdan con las complejidades teóricas O(n) para la búsqueda secuencial y O(log n) para la búsqueda binaria.
+
+**Nota:** Los resultados corresponden al número de comparaciones realizadas, no a mediciones de tiempo de ejecución.
