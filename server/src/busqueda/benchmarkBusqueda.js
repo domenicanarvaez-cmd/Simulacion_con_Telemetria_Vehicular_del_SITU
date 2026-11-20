@@ -102,9 +102,8 @@ const guardarOrdenados = await cargarFuncion('./almacenamientoOrdenado.js', 'gua
 // Búsquedas sobre el archivo indexado (José, issue #9).
 // Contrato: buscarSecuencialEnArchivo(rutaArchivo, clave) -> { registro, comparaciones }
 // Contrato: buscarBinariaEnIndice(rutaArchivo, indice, clave) -> { registro, comparaciones }
-const buscarSecuencialEnArchivo = await cargarFuncion('./busquedaArchivo.js', 'buscarSecuencialEnArchivo');
-const buscarBinariaEnIndice = await cargarFuncion('./busquedaArchivo.js', 'buscarBinariaEnIndice');
-
+const buscarSecuencialEnArchivo = await cargarFuncion('./busquedaSecuencial.js', 'buscarEnArchivo');
+const buscarBinariaEnIndice = await cargarFuncion('./busquedaBinaria.js', 'buscarBinariaEnArchivo');
 // ---------------------------------------------------------------
 // 3. GENERACIÓN DE DATOS DE TELEMETRÍA
 // ---------------------------------------------------------------
@@ -274,7 +273,7 @@ for (const n of VOLUMENES) {
 
         // Secuencial en archivo: menos búsquedas porque cada una lee todo.
         const clavesSec = claves.slice(0, BUSQUEDAS_ARCHIVO_SECUENCIAL);
-        const ms = medir((c) => buscarSecuencialEnArchivo(rutaArchivo, c), clavesSec);
+        const ms = medir((c) => buscarSecuencialEnArchivo(rutaArchivo, c, 'unidadId'), clavesSec);
         agregar('Archivo', 'Secuencial', clavesSec.length, teoricoSecuencial, ms);
 
         const clavesBin = claves.slice(0, BUSQUEDAS_ARCHIVO_BINARIA);
