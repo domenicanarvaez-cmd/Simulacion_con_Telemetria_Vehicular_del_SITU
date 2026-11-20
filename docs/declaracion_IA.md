@@ -267,4 +267,18 @@ Se ejecutaron las pruebas individuales de búsqueda binaria y las pruebas comple
 
 ### Responsabilidad
 
-Soy responsable del trabajo entregado. Revisé la implementación, comprendí el funcionamiento de la búsqueda binaria y comprobé los resultados mediante las pruebas realizadas.
+Soy responsable de mi parte entregada. Entiendo cómo se ordenan los registros, cómo se calcula el offset en bytes (`Buffer.byteLength`, no la cantidad de caracteres) y cómo el índice permite leer un solo registro con `readSync`.
+
+
+---
+
+## AA2-U2 #10 – Generador de datos y benchmark de estrés (Domenica Narvaez)
+
+**Herramienta:** Claude (Anthropic)
+
+| Prompt | Para qué lo usé | Cómo validé |
+|---|---|---|
+| "Revisa el repo y dime qué ya hay hecho del AA2" | Conocer el avance del equipo y definir los nombres de las funciones que usa el benchmark (contrato) | Comparé lo que me dijo con las ramas y los issues en GitHub |
+| "Revisa mi `benchmarkBusqueda.js` y corrige lo que este mal" | Correciones en `benchmarkBusqueda.js` para el issue #10: datos con semilla, ordenamiento con nuestro MergeSort, 1 000 claves de búsqueda (20 % inexistentes) y medición de tiempo, comparaciones y CPU | Lo ejecuté nuevamente con `node --expose-gc` y comprobé que, cuando faltan partes del equipo, avisa y las salta sin detenerse | 
+
+**Responsabilidad:** Revisé y entiendo el funcionamiento del benchmark. Soy responsable del contenido que entrego.
