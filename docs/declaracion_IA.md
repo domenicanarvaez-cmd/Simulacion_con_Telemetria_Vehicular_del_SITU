@@ -164,43 +164,106 @@ Soy responsable del contenido final entregado. Entiendo el funcionamiento del al
 
 | Prompt | Para qué lo usé | Cómo validé |
 |---|---|---|
-| Compartí el issue y consulté cómo realizar la búsqueda secuencial | Entender cómo implementar la función y realizar las pruebas solicitadas | Ejecuté node pruebas.js y comprobé los cuatro casos |
+| Compartí el issue y consulté cómo realizar la búsqueda secuencial | Entender cómo implementar la función y realizar las pruebas solicitadas | Ejecuté las pruebas con `npm test` (formato node:test, 6 pruebas en `server/test/busquedaSecuencial.test.js`) y comprobé los cuatro casos |
 | Consulté cómo relacionar la búsqueda secuencial con la sostenibilidad | Tener una idea de cómo explicar el consumo de recursos y buscar referencias | Verifiqué los autores y el DOI de las referencias en IEEE Xplore y leí los resúmenes |
 | Pregunté cómo subir mis cambios a GitHub | Recordar los pasos para trabajar con ramas, commits y Pull Requests | Ejecuté los comandos en mi terminal y revisé el PR en GitHub |
+| Consulté cómo corregir las observaciones de la revisión (PR #68) sobre mi parte | Mover el código a `server/src/busqueda/`, agregar comentarios JSDoc y pasar las pruebas al formato node:test | Verifiqué que `busquedaSecuencial.js` quedó en la carpeta correcta, leí los comentarios y ejecuté `npm test`: pasan las 65 pruebas, incluidas las 6 de búsqueda secuencial |
 
 **Responsabilidad:** Revisé, adapté y comprobé el trabajo realizado. Soy responsable del código y del contenido que entrego.
 
 ---
 
-## AA2-U2 – Almacén ordenado e índice (guardar registros y construir el índice)
+## AA2-U2 – Almacén ordenado, índice y búsquedas sobre archivo (secuencial y binaria) J
 
-**Responsable:** @Danilrox
+**Responsable:** @Danilrox Jose Maldonado
 **Herramienta:** Claude (Anthropic)
-**Componente:** `server/src/busqueda/` (`generarDesordenados.js`, `AlmacenOrdenado.js`), `server/src/ordenamiento/generador.js` y `server/test/AlmacenOrdenado.test.js`.
-**Tareas del issue cubiertas:** guardar los registros ordenados en `datos.jsonl` y construir el índice clave → posición (offset). La búsqueda secuencial, la binaria y el retorno de `{ registro, comparaciones }` corresponden a otros integrantes.
+**Componente:** `server/src/busqueda/` (`generarDesordenados.js`, `almacenamientoOrdenado.js`, `busquedaSecuencial.js`, `busquedaBinaria.js`), `server/src/ordenamiento/generador.js` y las pruebas `server/test/AlmacenOrdenado.test.js`, `server/test/busquedaArchivo.test.js` y `server/test/busquedaBinaria.test.js`.
+**Tareas del issue cubiertas:** guardar los registros ordenados en `datos.jsonl`, construir el índice clave → posición (offset), búsqueda secuencial sobre el archivo, búsqueda binaria sobre el índice leyendo solo el registro con `readSync`, y devolver `{ registro, comparaciones }` en ambos casos.
 
 ### Alcance del uso
 
-Usé la IA para entender el enunciado y el proyecto, planificar la tarea y escribir el código de mi parte: el generador de registros con `unidadId` desordenados (mezcla Fisher-Yates con semilla), la función `guardarOrdenados` (ordena con el `mergeSort` del equipo, escribe el JSONL y devuelve el índice) y sus pruebas. El `mergeSort` y el generador original (`crearGenerador`, `generarRegistros`) ya eran del equipo; solo moví el generador a `generador.js` para poder reutilizarlo sin ejecutar el benchmark.
+Usé la IA para entender el enunciado y el proyecto, planificar la tarea y escribir el código de mi parte: el generador de registros con `unidadId` desordenados (mezcla Fisher-Yates con semilla), la función `guardarOrdenados` (ordena con el `mergeSort` del equipo, escribe el JSONL y devuelve el índice), y la adaptación de las dos búsquedas para que trabajen sobre el archivo. El `mergeSort`, el generador original (`crearGenerador`, `generarRegistros`), la función `busquedaSecuencial` sobre arreglos y la función `busquedaBinaria` sobre arreglos ya eran del equipo (la binaria es de un compañero); solo las adapté para leer el archivo. También moví el generador a `generador.js` para reutilizarlo sin ejecutar el benchmark.
+
+**Corrección a la versión anterior de esta declaración:** el módulo se llama `almacenamientoOrdenado.js` (no `AlmacenOrdenado.js`). Además, en esa versión indiqué que `AlmacenOrdenado.test.js` ya tenía 5 pruebas que pasaban, pero en mi copia del proyecto ese archivo estaba vacío. Las 5 pruebas las generó Claude después, en la conversación descrita abajo, y ya pasan.
 
 ### Prompts utilizados
 
 | Prompt | Para qué lo usé | Cómo validé |
 |---|---|---|
 | "la tarea me pide guardar los registros ordenados, pero no se a que registros se refiere" *(se adjuntó la captura del issue y el `.zip` del proyecto)* | Entender qué son los registros: las tramas de telemetría `{ unidadId, lat, lng, velocidad, ts }` | Lo contrasté con `docs/contrato.md` y con `benchmark.js` |
-| "no ecuentro el archivo demo.js" | Ubicar el archivo (`src/ordenamiento/`, en la raíz, no en `server/`) | Lo abrí en el repositorio |
 | "en que se basa merge para ordenarlos>" y "si esta usando el metodo MergeSort que creamos??" | Entender cómo ordena Merge Sort (dividir, conquistar y combinar, más el comparador) y confirmar que el proyecto usa nuestro `mergeSort` y no `.sort()` | Revisé `MergeSort.js` y los `import` de `benchmark.js` y `demo.js` |
 | "ahora dame el plan que debo hacer para realizar mi tarea asignada" | Obtener el plan paso a paso de la tarea | Lo comparé con las casillas del issue |
 | "que es la clave del indice" | Entender qué es la clave del índice y por qué se eligió `unidadId` (única y es el mismo criterio de orden) | Lo comprobé con el índice generado, que queda ordenado por `unidadId` |
 | "ya exporte esas 2 funciones, que hago" | Resolver cómo reutilizar `crearGenerador` y `generarRegistros`. La IA advirtió que importar `benchmark.js` ejecuta el benchmark completo y sobrescribe `resultados.csv` | Moví las funciones a `generador.js` e importé desde ahí |
 | "que es fs" | Entender el módulo `fs` de Node (`writeFileSync`, `openSync`, `readSync`, `closeSync`) | Lo apliqué en `guardarOrdenados` y en las pruebas |
-| "realiza eso" *(sobre el paso 1 del plan: generar registros con ids desordenados)* | Generar `generarDesordenados.js`. `generarRegistros` crea ids ya ordenados, por eso se mezclan con Fisher-Yates y una semilla distinta | Se probó que los ids son únicos, que el resultado es reproducible con la misma semilla y que `mergeSort` los deja ordenados |
-| "tengo esto:" *(se pegó el código de `generarDesordenados.js`)* | Confirmar el archivo y continuar con los pasos de guardar y construir el índice. La IA generó `AlmacenOrdenado.js` | Se probó con 1 000 registros: cada `offset` del índice, leído con `readSync`, devuelve el registro con la misma clave |
-| "la busqueda binaria y secuencial deben hacerla mis otros 2 companeros" | Acotar mi parte a las dos primeras tareas del issue. La IA generó `AlmacenOrdenado.test.js` y el contrato de entrega (formato de `datos.jsonl` e índice) para mis compañeros | Las 5 pruebas pasan: archivo ordenado, índice contiguo y ordenado, offsets correctos con `readSync` y arreglo original sin modificar |
+| "tengo esto:" *(se pegó el código de `generarDesordenados.js`)* | Confirmar el archivo y continuar con los pasos de guardar y construir el índice. La IA generó el módulo del almacén ordenado | Se probó con 1 000 registros: cada `offset` del índice, leído con `readSync`, devuelve el registro con la misma clave |
+| "la busqueda binaria y secuencial deben hacerla mis otros 2 companeros" | Acotar mi parte, en ese momento, a las dos primeras tareas del issue. La IA generó el contrato de entrega (formato de `datos.jsonl` e índice) | Lo contrasté con el código del almacén |
 | "hasta ahora que nomas tengo echo de las tareas" *(se adjuntó la captura del issue)* | Revisar el avance contra las casillas del issue | Lo comparé con el estado del issue |
-| "dame los promts que utilizados y ponlos en la declaracion de IA" | Redactar esta sección | La revisé contra el historial de la conversación |
+| "adapta esta funcion para que pueda leer un archivo.json" *(se pegó `busquedaSecuencial` y un ejemplo de `datos.jsonl`)* | Obtener `leerJSONL` (lee el archivo línea por línea con `JSON.parse`) y `buscarEnArchivo`, que combina la lectura con la búsqueda secuencial | Probé las funciones con `datos.jsonl` y comprobé el número de comparaciones |
+| "la tarea pide esto, que mas me falta" *(se adjuntó la captura del issue y el `.zip`)* | Revisar el proyecto contra las casillas y detectar lo pendiente: búsqueda binaria, retorno `{ registro, comparaciones }`, esta declaración y el PR. También señaló que `AlmacenOrdenado.test.js` estaba vacío y que los nombres de archivo no coincidían | Lo verifiqué abriendo los archivos del proyecto y ejecutando `npm test` |
+| "entonces es menos optimo??" | Entender la diferencia entre leer todo el archivo con `readFileSync` y leerlo registro por registro: el número de comparaciones es igual, pero cambian los bytes leídos, la memoria (O(n) frente a O(1)) y el mejor caso | Lo contrasté con el enunciado ("leer el archivo registro por registro") |
+| "como hago Devolver { registro, comparaciones } en ambos casos" | Obtener `buscarEnArchivo` con el nuevo retorno, una versión por línea (`leerRegistros`) y la búsqueda binaria sobre el archivo (`construirIndice`, lectura con `readSync` en el offset) | Corrí `npm test`; con `datos.jsonl`, el `unidadId` 700 se encontró con 700 comparaciones (secuencial) y 9 (binaria), con el mismo registro |
+| "es necesario que haga algun .test.js?" y "dame el commit para ponerlo en el repo" | Decidir qué pruebas agregar y obtener los comandos de Git para el commit | Revisé `git status` antes de agregar archivos |
+| "nunca hice el codigo de AlmacenOrdenado, se me olvido" | La IA generó `AlmacenOrdenado.test.js` (5 pruebas: archivo ordenado, índice ordenado, índice contiguo, offsets correctos con `readSync` y arreglo original sin modificar) y `busquedaArchivo.test.js` | Las pruebas pasan con el resto del proyecto |
+| "ya tengo la funcion busqueda binaria, adapta la funcion de mi companero para que pueda leer archivos.json" *(se pegó la función `busquedaBinaria` de un compañero)* | Reutilizar su función sobre el índice y agregar `buscarBinariaEnArchivo` (busca la posición en el índice y lee solo ese registro con `readSync`) y `construirIndice` | Su función quedó sin cambios; las pruebas de arreglos y las nuevas pasan |
+| "para que son las funciones construiIndice y buscarBinariaEnElArchivo" | Entender para qué sirven ambas funciones | Lo relacioné con la casilla del issue sobre la búsqueda binaria |
+| "y si pasa mi test??" *(se pegó la prueba de `busquedaBinaria`)* y los mensajes de error de `node --test` | Comprobar que la prueba existente sigue pasando y depurar un fallo de `import` (dependencia de una función que no existía en mi `busquedaSecuencial.js`); `construirIndice` quedó sin esa dependencia | Reejecuté la prueba y `npm test` |
+| *(se pegó `busquedaSecuencial.js`)* | Comprobar mi versión contra `busquedaArchivo.test.js`: faltaba el valor por defecto `campo = "unidadId"` en `buscarEnArchivo` | Con el cambio, las pruebas pasan |
+| "dame los promts que utilizados y ponlos en la declaracion de IA" y "actualiza la informacion" | Redactar y actualizar esta sección | La revisé contra el historial de la conversación |
 
-**Validación final:** ejecuté `npm test` en `server/` y comprobé que las pruebas de `AlmacenOrdenado.test.js` pasan junto con las del resto del proyecto. Verifiqué que `datos.jsonl` no se sube al repositorio (`.gitignore`) y que `benchmark.js` ya no define el generador, sino que lo importa de `generador.js`.
+**Decisión propia:** en la búsqueda secuencial mantuve la lectura con `readFileSync` y `leerJSONL`, que carga el archivo completo antes de buscar. La IA me explicó que una lectura registro por registro usaría menos memoria y leería menos disco en el mejor caso, y me dio una versión (`leerRegistros`), pero decidí no usarla. El número de comparaciones no cambia. Quité `indice` del retorno de `buscarEnArchivo` para que devuelva `{ registro, comparaciones }`.
+
+**Validación final:** ejecuté `npm test` en `server/` y comprobé que todas las pruebas pasan, incluidas las de `AlmacenOrdenado.test.js`, `busquedaArchivo.test.js` y `busquedaBinaria.test.js`. Verifiqué que `datos.jsonl` no se sube al repositorio (`.gitignore`) y que `benchmark.js` importa el generador de `generador.js`.
+
+### Responsabilidad
+
+Soy responsable de mi parte entregada. Entiendo cómo se ordenan los registros, cómo se calcula el offset en bytes (`Buffer.byteLength`, no la cantidad de caracteres), cómo el índice permite leer un solo registro con `readSync` y por qué la búsqueda binaria hace menos comparaciones y lecturas que la secuencial.
+
+
+---
+
+## AA2-U2 – Búsqueda binaria (Galo Benítez)
+
+**Herramienta utilizada:** ChatGPT (OpenAI)
+
+**Componente:** Búsqueda binaria
+(`server/src/busqueda/busquedaBinaria.js`).
+
+### Alcance del uso
+
+Utilicé ChatGPT como apoyo para comprender los requisitos de la actividad, revisar la estructura del repositorio, implementar la búsqueda binaria iterativa, preparar las pruebas unitarias y comparar las complejidades teóricas y experimentales de la búsqueda secuencial y binaria. Revisé el código y ejecuté las pruebas para comprobar su funcionamiento.
+
+### Prompts utilizados
+
+#### 1. Orientación inicial sobre la actividad
+
+**Prompt:**
+
+> hola que tal jaja oye el dia de hoy tengo que hacer esta nueva actividad que me asignaron
+
+**Material de contexto:** Se adjuntó una captura del Issue #8 con las instrucciones de la actividad.
+
+**Uso del resultado:** Comprender los requisitos y organizar los pasos necesarios para realizar la actividad.
+
+#### 2. Organización del trabajo con Git Bash
+
+**Prompt:**
+
+> o podemos hacerlo tambien desde el git bash?
+
+**Uso del resultado:** Recibir orientación sobre cómo utilizar Git Bash para revisar el repositorio, gestionar ramas y ejecutar pruebas.
+
+#### 3. Uso de Visual Studio Code
+
+**Prompt:**
+
+> no seria mejor si el codigo lo hago con mi vusial studio code o solo se hace en el bash?
+
+**Uso del resultado:** Organizar el trabajo utilizando Visual Studio Code para escribir el código y Git Bash para ejecutar comandos de Git y pruebas.
+
+### Validación
+
+Se ejecutaron las pruebas individuales de búsqueda binaria y las pruebas completas del servidor. Se obtuvieron 7 pruebas individuales aprobadas y 77 pruebas del servidor aprobadas. También se realizó una comparación de las comparaciones efectuadas por ambos algoritmos con 500.000 registros ordenados mediante MergeSort.
 
 ### Responsabilidad
 

@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 
 import { mergeSort } from './MergeSort.js';
 import { quickSort } from './QuickSort.js';
+import { crearGenerador, generarRegistros } from './generador.js';
 
 // Configuración del benchmark
 const TAMANOS = [1000, 10000, 100000];
