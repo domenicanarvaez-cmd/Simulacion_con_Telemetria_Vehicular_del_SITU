@@ -1,0 +1,13 @@
+registros,lugar,metodo,busquedas,tiempo_promedio_ms,comparaciones_promedio,peor_caso_teorico,cpu_promedio_us
+1000,Memoria,Secuencial,1000,0.003942,590.91,1000,8.227
+1000,Memoria,Binaria,1000,0.000893,9.23,10,3.249
+1000,Archivo,Secuencial,30,0.809863,582.87,1000,853.233
+1000,Archivo,Binaria,1000,0.010485,9.23,10,16.343
+50000,Memoria,Secuencial,1000,0.151102,29447.54,50000,151.212
+50000,Memoria,Binaria,1000,0.001298,14.91,16,3.309
+50000,Archivo,Secuencial,30,42.232007,29518.73,50000,44833.800
+50000,Archivo,Binaria,1000,0.012156,14.91,16,12.061
+500000,Memoria,Secuencial,1000,6.387063,295221.63,500000,6383.800
+500000,Memoria,Binaria,1000,0.001955,18.14,19,6.068
+500000,Archivo,Secuencial,30,400.511425,308338.30,500000,399868.633
+500000,Archivo,Binaria,1000,0.011555,18.14,19,36.197
