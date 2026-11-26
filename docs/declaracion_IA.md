@@ -282,3 +282,16 @@ Soy responsable de mi parte entregada. Entiendo cómo se ordenan los registros, 
 | "Revisa mi `benchmarkBusqueda.js` y corrige lo que este mal" | Correciones en `benchmarkBusqueda.js` para el issue #10: datos con semilla, ordenamiento con nuestro MergeSort, 1 000 claves de búsqueda (20 % inexistentes) y medición de tiempo, comparaciones y CPU | Lo ejecuté nuevamente con `node --expose-gc` y comprobé que, cuando faltan partes del equipo, avisa y las salta sin detenerse | 
 
 **Responsabilidad:** Revisé y entiendo el funcionamiento del benchmark. Soy responsable del contenido que entrego.
+
+
+---
+
+## AA3-U2 #12 – Implementar Heap desde cero (Domenica Narvaez)
+
+**Herramienta:** Claude (Anthropic)
+
+| Prompt | Para qué lo usé | Cómo validé |
+|---|---|---|
+| "Ahora quiero hacer el AA3, dime qué tengo que hacer y no olvides explicarme la teoría" | Claude explicó qué es un Heap (árbol en arreglo, propiedad del heap, subir y bajar) y guio en la generación `Heap.js`, `Heap.test.js` y `Heap-BigO.md` | Revisé el código y sus comentarios para entender cada método; ejecuté `npm test` en `server/` y pasaron las 10 pruebas del Heap y las 87 del proyecto |
+
+**Responsabilidad:** Revisé y entiendo el funcionamiento del Heap. Soy responsable del contenido que entrego.
