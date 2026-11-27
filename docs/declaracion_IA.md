@@ -168,6 +168,28 @@ Soy responsable del contenido final entregado. Entiendo el funcionamiento del al
 | Compartí el issue y consulté cómo realizar la búsqueda secuencial | Entender cómo implementar la función y realizar las pruebas solicitadas | Ejecuté las pruebas con `npm test` (formato node:test, 6 pruebas en `server/test/busquedaSecuencial.test.js`) y comprobé los cuatro casos |
 | Consulté cómo relacionar la búsqueda secuencial con la sostenibilidad | Tener una idea de cómo explicar el consumo de recursos y buscar referencias | Verifiqué los autores y el DOI de las referencias en IEEE Xplore y leí los resúmenes |
 | Pregunté cómo subir mis cambios a GitHub | Recordar los pasos para trabajar con ramas, commits y Pull Requests | Ejecuté los comandos en mi terminal y revisé el PR en GitHub |
-| Consulté cómo corregir las observaciones de la revisión (PR #68) sobre mi parte | Mover el código a `server/src/busqueda/`, agregar comentarios JSDoc y pasar las pruebas al formato node:test | Verifiqué que `busquedaSecuencial.js` quedó en la carpeta correcta, leí los comentarios y ejecuté `npm test`: pasan las 65 pruebas, incluidas las 6 de búsqueda secuencial |
+| Consulté cómo corregir las observaciones de la revisión (PR #68) sobre mi parte | Mover el código a `server/src/busqueda/`, agregar comentarios JSDoc y pasar las pruebas al formato node:test | Verifiqué que `busquedaSecuencial.js` quedó en la carpeta correcta, leí los comentarios y ejecuté `npm test`: pasan las 65 pruebas, incluidas las 6 de búsqueda secuencial |git 
 
 **Responsabilidad:** Revisé, adapté y comprobé el trabajo realizado. Soy responsable del código y del contenido que entrego.
+
+# Declaración de uso de IA
+
+**Proyecto:** Simulación con Telemetría Vehicular del SITU  
+**Actividad:** AA3-U2 – Heaps, Code Freeze e Informe Consolidado (issue #15)  
+**Herramienta:** Claude (Anthropic)  
+**Responsable:** Jahir Campoverde
+
+## Registro de prompts
+
+| N.º | Fecha | Prompt | Uso del resultado | Verificación |
+|---|---|---|---|---|
+| 1 | nov-2026 | Consulté cómo organizar las cinco tareas del issue #15 y qué debía incluir cada una. | Me ayudó a tener una idea de cómo organizar los documentos. | Revisé las indicaciones del issue para cumplir con lo solicitado. |
+| 2 | nov-2026 | Compartí las carpetas del proyecto para organizar el diagrama de acuerdo con nuestros archivos. | Utilicé la información para mejorar el diagrama y su explicación. | Revisé que los nombres fueran los mismos que usamos en el proyecto. |
+| 3 | nov-2026 | Compartí los resultados de `benchmark.js` y pedí ayuda para hacer la tabla y explicar los datos. | Organicé los resultados en una tabla para el informe. | Comprobé que los valores fueran iguales a los obtenidos en las pruebas. |
+| 4 | nov-2026 | Compartí el código de búsqueda secuencial y consulté cómo medirlo y presentar sus resultados. | Utilicé la ayuda para preparar la medición y la tabla de AA2. | Ejecuté las pruebas y revisé los resultados. |
+| 5 | nov-2026 | Compartí los archivos del heap de mi compañero y pedí ayuda para organizar los resultados de AA3. | Utilicé la información para preparar la tabla y su explicación. | Revisé los datos junto con el trabajo de mi compañero. |
+| 6 | nov-2026 | Consulté cómo colocar las referencias bibliográficas en formato IEEE. | Utilicé la guía para organizar las referencias del informe. | Revisé las fuentes y dejé las que realmente consultamos. |
+
+## Declaración
+
+Utilicé la IA como apoyo para organizar algunas partes del trabajo y mejorar la redacción del informe. Los resultados de las pruebas fueron obtenidos por el equipo y revisados antes de ser incluidos. La información final fue adaptada de acuerdo con nuestro proyecto y lo que realizamos durante la actividad.
