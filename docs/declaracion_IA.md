@@ -294,4 +294,28 @@ Soy responsable de mi parte entregada. Entiendo cómo se ordenan los registros, 
 |---|---|---|
 | "Ahora quiero hacer el AA3, dime qué tengo que hacer y no olvides explicarme la teoría" | Claude explicó qué es un Heap (árbol en arreglo, propiedad del heap, subir y bajar) y guio en la generación `Heap.js`, `Heap.test.js` y `Heap-BigO.md` | Revisé el código y sus comentarios para entender cada método; ejecuté `npm test` en `server/` y pasaron las 10 pruebas del Heap y las 87 del proyecto |
 
-**Responsabilidad:** Revisé y entiendo el funcionamiento del Heap. Soy responsable del contenido que entrego.
+**Responsabilidad:** Revisé y entiendo el funcionamiento del Heap. Soy responsable del contenido que entrego.  
+
+---
+
+## AA3-U2 #13 – Cola de prioridad con Heap integrada a la telemetría (Dario Chillogallo)
+
+**Responsable:** @monao67 Dario Chillogallo  
+**Herramienta utilizada:** Gemini (Google)  
+**Componentes:** `server/src/heap/ColaPrioridad.js`, `server/src/heap/benchmarkHeap.js`, `server/test/ColaPrioridad.test.js` y `resultados_heap.csv`.
+
+### Alcance del uso
+
+Utilicé Gemini como apoyo para comprender el flujo de ramas e integración del AA3, diseñar la envolvente `ColaPrioridad` sobre la clase `Heap` del equipo, conectar la ingesta de tramas desde `BufferCircular` evitando el problema de referencias reutilizadas de `leer()`, estructurar las 5 pruebas unitarias con `node:test` y construir el script de benchmark frente a `mergeSort`. Revisé, ejecuté y verifiqué todo el código y las mediciones antes de subir el Pull Request.
+
+### Prompts utilizados
+
+| Prompt | Para qué lo usé | Cómo validé |
+|---|---|---|
+| "estas son las presentacions... analiza las diapos, en esas presentaciones y explicaelas de forma q yo pueda explicar en la exposicion frente a la clase" *(se adjuntó el PDF de presentación de la Unidad 2)* | Comprender a profundidad las métricas de AA2 y el planteamiento de pilas de deltas para preparar la defensa oral | Contrasté las cifras con `resultados_busqueda.csv` y la estructura de `Pila.js` del repositorio |
+| "Explica los entregables que se me ha asignado para esta actividad AA3" *(se adjuntaron las capturas de los issues #12–#16)* | Verificar dependencias entre ramas (`feat/heap` $\rightarrow$ `feature/heap-aa3`) y confirmar los entregables exactos del Issue #13 | Revisé `Heap.js` tras aprobar el merge y comprobé que `npm test` pasara las 87 pruebas base |
+| "aprobe el merge, ahora ya esta la data de DOmenica... dime como empezar ya" | Generar `ColaPrioridad.js` (con comparador multicriterio e `ingestarDesdeBuffer`), `ColaPrioridad.test.js` y `benchmarkHeap.js` | Ejecuté `npm test` (todas las pruebas aprobadas) y corrí `node --expose-gc server/src/heap/benchmarkHeap.js`, verificando `resultados_heap.csv` (con $n=500\,000$, Heap tarda $50,35\text{ ms}$ frente a $448,34\text{ ms}$ de MergeSort) |
+
+### Responsabilidad
+
+Soy responsable del código y los resultados entregados. Entiendo cómo opera la cola de prioridad sobre el montículo binario en $\mathcal{O}(\log n)$, por qué clonar el objeto reutilizado de `BufferCircular.leer()` evita corrupción de datos y por qué extraer el Top-$k$ con Heap supera en tiempo y memoria a ordenar todo el arreglo con `MergeSort`.
