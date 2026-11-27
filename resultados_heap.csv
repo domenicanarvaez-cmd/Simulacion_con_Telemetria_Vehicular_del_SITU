@@ -1,0 +1,7 @@
+registros,k,metodo,tiempo_promedio_ms,heap_delta_mb
+1000,10,"ColaPrioridad (Heap)",0.737189,0.144865
+1000,10,"MergeSort completo",0.784798,0.700536
+50000,10,"ColaPrioridad (Heap)",6.531679,1.295607
+50000,10,"MergeSort completo",30.779844,5.597786
+500000,10,"ColaPrioridad (Heap)",50.345886,13.308548
+500000,10,"MergeSort completo",448.335193,73.257314
